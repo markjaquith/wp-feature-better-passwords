@@ -36,7 +36,7 @@ include( dirname( __FILE__ ) . '/lib/requirements-check.php' );
 $wp_feature_better_passwords_requirements_check = new WP_Feature_Better_Passwords_Requirements_Check( array(
 	'title' => 'WP Feature Better Passwords',
 	'php'   => '5.3',
-	'wp'    => '4.0',
+	'wp'    => '4.2.9999',
 	'file'  => __FILE__,
 ));
 
