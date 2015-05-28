@@ -31,6 +31,8 @@
 
 defined( 'WPINC' ) or die;
 
+! defined( 'WP_FEATURE_BETTER_PASSWORDS' ) or return;
+
 include( dirname( __FILE__ ) . '/lib/requirements-check.php' );
 
 $wp_feature_better_passwords_requirements_check = new WP_Feature_Better_Passwords_Requirements_Check( array(
