@@ -31,7 +31,7 @@
 
 defined( 'WPINC' ) or die;
 
-if ( ! defined( 'WP_FEATURE_BETTER_PASSWORDS' ) ) {
+if ( defined( 'WP_FEATURE_BETTER_PASSWORDS' ) ) {
 	return;
 }
 
