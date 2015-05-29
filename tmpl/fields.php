@@ -64,7 +64,7 @@ button.wp-hide-pw > .dashicons {
 		<input class="hidden" value=" " /><!-- #24364 workaround -->
 		<button type="button" style="display:none" class="button button-secondary wp-generate-pw"><?php _e( 'Generate new password' ); ?></button>
 		<div class="wp-pwd">
-		<input type="password" name="pass1" id="pass1" class="regular-text" value="" autocomplete="off" data-pw="<?php echo esc_attr( wp_generate_password( 24, false, false ) ); ?>" /> <button type="button" style="display: none" class="button button-secondary wp-hide-pw" data-toggle="0">
+		<input type="password" name="pass1" id="pass1" class="regular-text" value="" autocomplete="off" data-pw="<?php echo esc_attr( wp_generate_password( 24 ) ); ?>" /> <button type="button" style="display: none" class="button button-secondary wp-hide-pw" data-toggle="0">
 			<span class="dashicons dashicons-visibility"></span>
 			<span class="text">hide</span>
 		</button>
