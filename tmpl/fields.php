@@ -25,17 +25,15 @@ jQuery(function($){
 	});
 
 
-	pw_new.on('click', 'button.wp-generate-pw', function(e){
-		e.preventDefault();
+	pw_new.on('click', 'button.wp-generate-pw', function(){
 		pw_generatebtn.hide();
 		pw_line.show();
 		pw_field.val(pw_field.data('pw')).attr('type', 'text');
 		pw_field.trigger('propertychange');
 	});
 
-	pw_togglebtn.on('click', function(e){
+	pw_togglebtn.on('click', function(){
 		var show = pw_togglebtn.attr('data-toggle');
-		e.preventDefault();
 		if (show == 1) {
 			pw_field.attr('type', 'text');
 			pw_togglebtn.attr('data-toggle', 0)
