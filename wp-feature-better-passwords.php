@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Feature Better Passwords
  * Plugin URI:  
- * Description: Improves the password changing UI in WorddPress
+ * Description: Improves the password changing UI in WordPress
  * Version:     0.1.0
  * Author:      Mark Jaquith
  * Author URI:  
