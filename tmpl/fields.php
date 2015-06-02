@@ -42,6 +42,7 @@ jQuery(function($){
 		pw_line.show();
 		pw_field.val(pw_field.data('pw')).attr('type', 'text');
 		pw_field.trigger('propertychange');
+		pw_field.focus();
 	});
 
 	pw_togglebtn.on('click', function(){
