@@ -13,7 +13,9 @@ jQuery(function($){
 			pw_generatebtn = pw_new.find('button.wp-generate-pw'),
 			pw_2 = $('.user-pass2-wrap'),
 			parentform = pw_new.closest('form'),
-			pw_strength = $('#pass-strength-result')
+			pw_strength = $('#pass-strength-result'),
+			pw_submitbtn = $('#submit'),
+			pw_checkbox = $('.pw-checkbox')
 	;
 
 	pw_2.hide();
@@ -33,8 +35,25 @@ jQuery(function($){
 				pw_field.removeClass( 'short bad good strong' );
 			if ( 'undefined' !== typeof cssClass ) {
 				pw_field.addClass( cssClass );
+				if ( cssClass == 'short' || cssClass == 'bad' ) {
+					if ( ! pw_checkbox.attr("checked") ) {
+						pw_submitbtn.attr('disabled','disabled');
+					}
+					$('.pw-weak').show();
+				} else {
+					pw_submitbtn.removeAttr('disabled');
+					$('.pw-weak').hide();
+				}
 			}
 		}, 1 );
+	});
+
+	pw_checkbox.change( function(){
+		if ( pw_checkbox.attr("checked") ) {
+			pw_submitbtn.removeAttr('disabled');
+		} else {
+			pw_submitbtn.attr('disabled','disabled');
+		}
 	});
 
 	pw_new.on('click', 'button.wp-generate-pw', function(){
@@ -79,6 +98,7 @@ button.wp-hide-pw > .dashicons {
 #pass-strength-result.short, #pass-strength-result.bad, #pass-strength-result.good, #pass-strength-result.strong {
 	opacity: 1;
 }
+.pw-weak{display:none;}
 input#pass1 {
 	box-shadow: none;
 }
@@ -119,5 +139,12 @@ input#pass1.strong {
 	<td>
 	<input name="pass2" type="password" id="pass2" class="regular-text" value="" autocomplete="off" />
 	<p class="description"><?php _e( 'Type your new password again.' ); ?></p>
+	</td>
+</tr>
+<tr class="pw-weak">
+	<th><label for="pw-weak"><?php _e( 'Confirm Password' ); ?></label></th>
+	<td>
+	<input type="checkbox" name="pw-weak" class="pw-checkbox" />
+	<?php _e( 'Confirm use of weak password.' ); ?>
 	</td>
 </tr>
