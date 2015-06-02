@@ -5,13 +5,15 @@ defined( 'WPINC' ) or die;
 
 <script>
 jQuery(function($){
+	window.pwsL10n.empty = '&nbsp;';
 	var pw_new = $('.user-pass1-wrap'),
 			pw_line = pw_new.find('.wp-pwd'),
 			pw_field = $('#pass1'),
 			pw_togglebtn = pw_new.find('.wp-hide-pw'),
 			pw_generatebtn = pw_new.find('button.wp-generate-pw'),
 			pw_2 = $('.user-pass2-wrap'),
-			parentform = pw_new.closest('form')
+			parentform = pw_new.closest('form'),
+			pw_strength = $('#pass-strength-result')
 	;
 
 	pw_2.hide();
@@ -24,6 +26,16 @@ jQuery(function($){
 		pw_field.attr('type', 'password');
 	});
 
+
+	pw_field.on('input propertychange', function(){
+		setTimeout( function(){
+			var cssClass = pw_strength.attr('class');
+				pw_field.removeClass( 'short bad good strong' );
+			if ( 'undefined' !== typeof cssClass ) {
+				pw_field.addClass( cssClass );
+			}
+		}, 1 );
+	});
 
 	pw_new.on('click', 'button.wp-generate-pw', function(){
 		pw_generatebtn.hide();
@@ -56,6 +68,35 @@ button.wp-hide-pw > .dashicons {
 	position: relative;
 	top: 3px;
 }
+#pass-strength-result {
+	float: none;
+	margin-top: -2px;
+	width: 25em;
+	box-sizing: border-box;
+	opacity: 0;
+}
+#pass-strength-result.short, #pass-strength-result.bad, #pass-strength-result.good, #pass-strength-result.strong {
+	opacity: 1;
+}
+input#pass1 {
+	box-shadow: none;
+}
+
+input#pass1.short {
+	border-color: #f04040;
+}
+
+input#pass1.bad {
+	border-color: #ff853c;
+}
+
+input#pass1.good {
+	border-color: #fc0;
+}
+
+input#pass1.strong {
+	border-color: #8dff1c;
+}
 </style>
 
 <tr id="password" class="user-pass1-wrap">
@@ -68,8 +109,7 @@ button.wp-hide-pw > .dashicons {
 			<span class="dashicons dashicons-visibility"></span>
 			<span class="text">hide</span>
 		</button>
-		<br />
-		<div id="pass-strength-result"><?php _e( 'Strength indicator' ); ?></div>
+		<div style="display:none" id="pass-strength-result"></div>
 		</div>
 	</td>
 </tr>
