@@ -15,7 +15,8 @@ jQuery(function($){
 			parentform = pw_new.closest('form'),
 			pw_strength = $('#pass-strength-result'),
 			pw_submitbtn = $('#submit'),
-			pw_checkbox = $('.pw-checkbox')
+			pw_checkbox = $('.pw-checkbox'),
+			pw_weak = $('.pw-weak')
 	;
 
 	pw_2.hide();
@@ -39,10 +40,10 @@ jQuery(function($){
 					if ( ! pw_checkbox.attr("checked") ) {
 						pw_submitbtn.attr('disabled','disabled');
 					}
-					$('.pw-weak').show();
+					pw_weak.show();
 				} else {
 					pw_submitbtn.removeAttr('disabled');
-					$('.pw-weak').hide();
+					pw_weak.hide();
 				}
 			}
 		}, 1 );
