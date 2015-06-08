@@ -9,6 +9,7 @@ jQuery(function($){
 	var pw_new = $('.user-pass1-wrap'),
 			pw_line = pw_new.find('.wp-pwd'),
 			pw_field = $('#pass1'),
+			pw_field2 = $('#pass2'),
 			pw_togglebtn = pw_new.find('.wp-hide-pw'),
 			pw_generatebtn = pw_new.find('button.wp-generate-pw'),
 			pw_2 = $('.user-pass2-wrap'),
@@ -22,7 +23,7 @@ jQuery(function($){
 	pw_generatebtn.show();
 
 	parentform.on('submit', function(){
-		$('#pass2').val( pw_field.val() );
+		pw_field2.val( pw_field.val() );
 		pw_field.attr('type', 'password');
 	});
 
@@ -36,6 +37,17 @@ jQuery(function($){
 			}
 		}, 1 );
 	});
+
+	/**
+	 * Fix a LastPass mismatch issue, LastPass only changes pass2.
+	 *
+	 * This fixes the issue by copying any changes from the hidden
+	 * pass2 field to the pass1 field.
+	 */
+	pw_field2.on( 'input propertychange', function(){
+		pw_field.val( pw_field2.val() );
+		pw_field.trigger( 'propertychange' );
+	} );
 
 	pw_new.on('click', 'button.wp-generate-pw', function(){
 		pw_generatebtn.hide();
